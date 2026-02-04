@@ -1,0 +1,3100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Model Selector Pro 2026 - Advanced Edition</title>
+    <style>F
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #6366f1;
+            --primary-dark: #4f46e5;
+            --secondary: #8b5cf6;
+            --accent: #ec4899;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --bg-dark: #0f172a;
+            --bg-light: #1e293b;
+            --text-primary: #f1f5f9;
+            --text-secondary: #cbd5e1;
+            --border: #334155;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, var(--bg-dark) 0%, #1a1f35 100%);
+            color: var(--text-primary);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Sticky Header Container */
+        .sticky-header-container {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: var(--bg-dark);
+            padding-bottom: 1rem;
+            margin-bottom: 2rem;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem;
+        }
+
+        /* Language Switcher */
+        .language-switcher {
+            position: fixed;
+            top: 1rem;
+            right: 1rem;
+            z-index: 1000;
+            display: flex;
+            gap: 0.5rem;
+            background: var(--bg-light);
+            padding: 0.5rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .lang-btn {
+            width: 50px;
+            height: 35px;
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            background-size: cover;
+            background-position: center;
+            opacity: 0.6;
+        }
+
+        .lang-btn:hover {
+            opacity: 0.8;
+            transform: scale(1.05);
+        }
+
+        .lang-btn.active {
+            opacity: 1;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.5);
+        }
+
+        .lang-btn-en {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 60 30"><clipPath id="s"><path d="M0,0 v30 h60 v-30 z"/></clipPath><clipPath id="t"><path d="M30,15 h30 v15 z v-15 h-30 z h-30 v15 z v-15 h30 z"/></clipPath><g clip-path="url(%23s)"><path d="M0,0 v30 h60 v-30 z" fill="%23012169"/><path d="M0,0 L60,30 M60,0 L0,30" stroke="%23fff" stroke-width="6"/><path d="M0,0 L60,30 M60,0 L0,30" clip-path="url(%23t)" stroke="%23C8102E" stroke-width="4"/><path d="M30,0 v30 M0,15 h60" stroke="%23fff" stroke-width="10"/><path d="M30,0 v30 M0,15 h60" stroke="%23C8102E" stroke-width="6"/></g></svg>');
+        }
+
+        .lang-btn-fr {
+            background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600"><rect width="900" height="600" fill="%23ED2939"/><rect width="600" height="600" fill="%23fff"/><rect width="300" height="600" fill="%23002395"/></svg>');
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            padding: 2rem 1rem;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 20px;
+            margin-bottom: 0;
+            box-shadow: 0 20px 60px rgba(99, 102, 241, 0.3);
+            position: relative;
+            overflow: hidden;
+            margin-top: 3rem;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320"><path fill="rgba(255,255,255,0.1)" d="M0,96L48,112C96,128,192,160,288,160C384,160,480,128,576,112C672,96,768,96,864,112C960,128,1056,160,1152,160C1248,160,1344,128,1392,112L1440,96L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path></svg>');
+            opacity: 0.1;
+        }
+
+        .header h1 {
+            font-size: clamp(1.5rem, 5vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+            position: relative;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .header p {
+            font-size: clamp(0.875rem, 3vw, 1.25rem);
+            opacity: 0.95;
+            position: relative;
+        }
+
+        /* Navigation Tabs */
+        .nav-tabs {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 0;
+            flex-wrap: wrap;
+            justify-content: center;
+            overflow-x: auto;
+            padding: 1rem 0;
+        }
+
+        .nav-tab {
+            padding: 0.75rem 1.5rem;
+            background: var(--bg-light);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 600;
+            font-size: clamp(0.75rem, 2vw, 1rem);
+            white-space: nowrap;
+            flex-shrink: 0;
+        }
+
+        .nav-tab:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.2);
+        }
+
+        .nav-tab.active {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-color: var(--primary);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        /* Content Sections */
+        .content-section {
+            display: none;
+        }
+
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Quiz Mode */
+        .quiz-container {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .quiz-step {
+            display: none;
+        }
+
+        .quiz-step.active {
+            display: block;
+            animation: slideIn 0.5s ease;
+        }
+
+        @keyframes slideIn {
+            from { opacity: 0; transform: translateX(-20px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        .quiz-question {
+            font-size: clamp(1.25rem, 4vw, 1.75rem);
+            font-weight: 700;
+            margin-bottom: 1.5rem;
+            color: var(--primary);
+        }
+
+        .quiz-description {
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            opacity: 0.8;
+            margin-bottom: 1.5rem;
+        }
+
+        .quiz-options {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
+        }
+
+        .quiz-option {
+            padding: 1.5rem;
+            background: var(--bg-dark);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            position: relative;
+        }
+
+        .quiz-option:hover {
+            border-color: var(--primary);
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.3);
+        }
+
+        .quiz-option.selected {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-color: var(--primary);
+        }
+
+        .quiz-option.selected::after {
+            content: '✓';
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            width: 24px;
+            height: 24px;
+            background: white;
+            color: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+
+        .quiz-option-icon {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .quiz-option-text {
+            font-weight: 600;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+        }
+
+        .quiz-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: space-between;
+            margin-top: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 12px;
+            font-weight: 600;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex: 1;
+            min-width: 120px;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            color: white;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(99, 102, 241, 0.4);
+        }
+
+        .btn-primary:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .btn-secondary {
+            background: var(--bg-dark);
+            color: var(--text-primary);
+            border: 2px solid var(--border);
+        }
+
+        .btn-secondary:hover {
+            border-color: var(--primary);
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            height: 8px;
+            background: var(--bg-dark);
+            border-radius: 4px;
+            margin-bottom: 2rem;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary) 0%, var(--secondary) 100%);
+            transition: width 0.3s ease;
+        }
+
+        /* Results */
+        .results-container {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .result-card {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 16px;
+            padding: clamp(1.5rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+        }
+
+        .result-title {
+            font-size: clamp(1.5rem, 4vw, 2rem);
+            font-weight: 800;
+            margin-bottom: 0.5rem;
+        }
+
+        .result-subtitle {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            opacity: 0.9;
+            margin-bottom: 1rem;
+        }
+
+        .result-features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .result-feature {
+            background: rgba(255,255,255,0.1);
+            padding: 1rem;
+            border-radius: 8px;
+        }
+
+        .result-feature-label {
+            font-size: clamp(0.75rem, 2vw, 0.875rem);
+            opacity: 0.8;
+            margin-bottom: 0.25rem;
+        }
+
+        .result-feature-value {
+            font-size: clamp(1rem, 2.5vw, 1.125rem);
+            font-weight: 700;
+        }
+
+        /* Prompt Generator Section */
+        .prompt-generator {
+            background: var(--bg-dark);
+            border-radius: 12px;
+            padding: clamp(1rem, 3vw, 2rem);
+            margin-top: 2rem;
+            border: 2px solid var(--border);
+        }
+
+        .prompt-generator h3 {
+            font-size: clamp(1.25rem, 3vw, 1.5rem);
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .prompt-template {
+            background: var(--bg-light);
+            padding: 1.5rem;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            position: relative;
+        }
+
+        .prompt-template-title {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+        }
+
+        .prompt-code {
+            background: #1a1a2e;
+            padding: 1rem;
+            border-radius: 6px;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            margin: 0.5rem 0;
+            position: relative;
+        }
+
+        .copy-btn {
+            position: absolute;
+            top: 0.5rem;
+            right: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: var(--primary);
+            border: none;
+            border-radius: 6px;
+            color: white;
+            cursor: pointer;
+            font-size: 0.75rem;
+            transition: all 0.3s ease;
+        }
+
+        .copy-btn:hover {
+            background: var(--primary-dark);
+            transform: scale(1.05);
+        }
+
+        /* Comparison Grid */
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(min(300px, 100%), 1fr));
+            gap: 1.5rem;
+        }
+
+        .model-card {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: clamp(1.25rem, 3vw, 2rem);
+            border: 2px solid var(--border);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .model-card:hover {
+            border-color: var(--primary);
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(99, 102, 241, 0.3);
+        }
+
+        .model-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .model-name {
+            font-size: clamp(1.125rem, 3vw, 1.5rem);
+            font-weight: 700;
+        }
+
+        .model-badge {
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .badge-premium { background: linear-gradient(135deg, #fbbf24 0%, #f59e0b 100%); }
+        .badge-balanced { background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%); }
+        .badge-free { background: linear-gradient(135deg, var(--success) 0%, #059669 100%); }
+
+        .model-stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.75rem;
+            margin-bottom: 1rem;
+        }
+
+        .stat {
+            background: var(--bg-dark);
+            padding: 0.75rem;
+            border-radius: 8px;
+        }
+
+        .stat-label {
+            font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+            opacity: 0.7;
+            margin-bottom: 0.25rem;
+        }
+
+        .stat-value {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            font-weight: 700;
+            color: var(--primary);
+        }
+
+        .model-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            padding: 0.25rem 0.75rem;
+            background: rgba(99, 102, 241, 0.2);
+            border-radius: 20px;
+            font-size: clamp(0.625rem, 1.5vw, 0.75rem);
+            border: 1px solid var(--primary);
+        }
+
+        /* Filters */
+        .filters {
+            background: var(--bg-light);
+            border-radius: 16px;
+            padding: clamp(1rem, 3vw, 2rem);
+            margin-bottom: 2rem;
+        }
+
+        .filter-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .filter-label {
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            display: block;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+        }
+
+        .filter-options {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        .filter-option {
+            padding: 0.5rem 1rem;
+            background: var(--bg-dark);
+            border: 2px solid var(--border);
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: clamp(0.75rem, 1.5vw, 0.875rem);
+        }
+
+        .filter-option:hover {
+            border-color: var(--primary);
+        }
+
+        .filter-option.active {
+            background: var(--primary);
+            border-color: var(--primary);
+        }
+
+        /* Share Section */
+        .share-section {
+            text-align: center;
+            margin-top: 3rem;
+            padding: 2rem;
+            background: var(--bg-light);
+            border-radius: 16px;
+        }
+
+        .share-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-top: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .share-btn {
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            font-weight: 600;
+            text-decoration: none;
+            color: white;
+            transition: all 0.3s ease;
+            display: inline-block;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+        }
+
+        .share-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .linkedin { background: #0077b5; }
+        .twitter { background: #1da1f2; }
+        .copy { background: var(--success); }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .container {
+                padding: 0.5rem;
+            }
+
+            .sticky-header-container {
+                padding-bottom: 0.5rem;
+                margin-bottom: 1rem;
+            }
+
+            .header {
+                margin-top: 4rem;
+                padding: 1.5rem 1rem;
+                margin-bottom: 0;
+            }
+
+            .nav-tabs {
+                gap: 0.25rem;
+                padding: 0.75rem 0;
+            }
+
+            .nav-tab {
+                padding: 0.5rem 1rem;
+            }
+
+            .quiz-buttons {
+                flex-direction: column;
+            }
+
+            .btn {
+                width: 100%;
+            }
+
+            .model-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .result-features {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 480px) {
+            .language-switcher {
+                top: 0.5rem;
+                right: 0.5rem;
+                padding: 0.25rem;
+            }
+
+            .lang-btn {
+                width: 40px;
+                height: 28px;
+            }
+
+            .result-features {
+                grid-template-columns: 1fr;
+            }
+
+            .model-stats {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Loading Animation */
+        .loading {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            background: var(--success);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            z-index: 1001;
+            animation: slideInUp 0.3s ease;
+        }
+
+        @keyframes slideInUp {
+            from { transform: translateY(100px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Copyright Footer */
+        .copyright-footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+            border-top: 2px solid var(--border);
+            opacity: 0.8;
+        }
+
+        .copyright-footer a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .copyright-footer a:hover {
+            color: var(--secondary);
+            text-decoration: underline;
+        }
+
+        /* Website Link Button in Results */
+        .website-btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 8px;
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            transition: all 0.3s ease;
+            margin-top: 1rem;
+        }
+
+        .website-btn:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+            transform: translateY(-2px);
+        }
+
+        /* Prompt Optimizer Section */
+        .optimizer-container {
+            background: var(--bg-light);
+            border-radius: 20px;
+            padding: clamp(1.5rem, 4vw, 3rem);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+
+        .optimizer-input {
+            width: 100%;
+            min-height: 150px;
+            background: var(--bg-dark);
+            border: 2px solid var(--border);
+            border-radius: 12px;
+            padding: 1rem;
+            color: var(--text-primary);
+            font-family: inherit;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            resize: vertical;
+            transition: all 0.3s ease;
+        }
+
+        .optimizer-input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 20px rgba(99, 102, 241, 0.3);
+        }
+
+        .optimizer-result {
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            border-radius: 12px;
+            padding: clamp(1rem, 3vw, 2rem);
+            margin-top: 1.5rem;
+            display: none;
+        }
+
+        .optimizer-result.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .optimizer-section {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .optimizer-section h4 {
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            margin-bottom: 0.75rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .optimizer-section ul {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .optimizer-section li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .optimizer-section li::before {
+            content: '•';
+            position: absolute;
+            left: 0.5rem;
+            font-weight: bold;
+        }
+
+        .score-badge {
+            display: inline-block;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            font-weight: 700;
+            font-size: clamp(1rem, 2.5vw, 1.25rem);
+            margin: 1rem 0;
+        }
+
+        .score-excellent {
+            background: var(--success);
+        }
+
+        .score-good {
+            background: #3b82f6;
+        }
+
+        .score-fair {
+            background: var(--warning);
+        }
+
+        .score-poor {
+            background: #ef4444;
+        }
+
+        .improved-prompt {
+            background: var(--bg-dark);
+            border-radius: 8px;
+            padding: 1rem;
+            font-family: 'Courier New', monospace;
+            font-size: clamp(0.875rem, 2vw, 1rem);
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            position: relative;
+            margin-top: 0.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Language Switcher -->
+    <div class="language-switcher">
+        <button class="lang-btn lang-btn-en active" onclick="switchLanguage('en')" aria-label="English"></button>
+        <button class="lang-btn lang-btn-fr" onclick="switchLanguage('fr')" aria-label="Français"></button>
+    </div>
+
+    <div class="container">
+        <!-- Sticky Header Container -->
+        <div class="sticky-header-container">
+            <!-- Header -->
+            <div class="header">
+                <h1 id="headerTitle">🤖 AI Model Selector Pro 2026</h1>
+                <p id="headerSubtitle">Find the perfect AI model for your needs in 60 seconds</p>
+            </div>
+
+            <!-- Navigation -->
+            <div class="nav-tabs">
+                <div class="nav-tab active" onclick="switchTab('quiz')" id="navQuiz">
+                    🎯 Interactive Quiz
+                </div>
+                <div class="nav-tab" onclick="switchTab('prompts')" id="navPrompts">
+                    ✨ Prompt Generator
+                </div>
+                <div class="nav-tab" onclick="switchTab('optimizer')" id="navOptimizer">
+                    🚀 Prompt Optimizer
+                </div>
+                <div class="nav-tab" onclick="switchTab('comparison')" id="navComparison">
+                    📊 Compare Models
+                </div>
+                <div class="nav-tab" onclick="switchTab('search')" id="navSearch">
+                    🔍 Advanced Search
+                </div>
+            </div>
+        </div>
+
+        <!-- Quiz Section -->
+        <div id="quiz" class="content-section active">
+            <div class="quiz-container">
+                <div class="progress-bar">
+                    <div class="progress-fill" id="quizProgress" style="width: 0%"></div>
+                </div>
+
+                <!-- Step 1: Use Cases (Multiple Selection) -->
+                <div class="quiz-step active" id="step1">
+                    <h2 class="quiz-question" id="q1Title">🎯 What are your main objectives?</h2>
+                    <p class="quiz-description" id="q1Desc">Select all that apply (multiple choices allowed)</p>
+                    <div class="quiz-options" id="useCaseOptions"></div>
+                    <div class="quiz-buttons">
+                        <button class="btn btn-secondary" onclick="resetQuiz()" id="btnReset1">Restart</button>
+                        <button class="btn btn-primary" onclick="nextStep()" id="nextBtn1">Next →</button>
+                    </div>
+                </div>
+
+                <!-- Step 2: Budget -->
+                <div class="quiz-step" id="step2">
+                    <h2 class="quiz-question" id="q2Title">💰 What's your monthly budget?</h2>
+                    <div class="quiz-options" id="budgetOptions"></div>
+                    <div class="quiz-buttons">
+                        <button class="btn btn-secondary" onclick="prevStep()" id="btnPrev2">← Back</button>
+                        <button class="btn btn-primary" onclick="nextStep()" id="nextBtn2" disabled>Next →</button>
+                    </div>
+                </div>
+
+                <!-- Step 3: Priorities (Multiple Selection) -->
+                <div class="quiz-step" id="step3">
+                    <h2 class="quiz-question" id="q3Title">⭐ What are your priorities?</h2>
+                    <p class="quiz-description" id="q3Desc">Select all that matter to you</p>
+                    <div class="quiz-options" id="priorityOptions"></div>
+                    <div class="quiz-buttons">
+                        <button class="btn btn-secondary" onclick="prevStep()" id="btnPrev3">← Back</button>
+                        <button class="btn btn-primary" onclick="calculateResults()" id="nextBtn3">See Results 🎉</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Results Section -->
+        <div id="results" class="content-section">
+            <div class="results-container">
+                <div id="resultsContent"></div>
+                
+                <div style="text-align: center; margin-top: 2rem;">
+                    <button class="btn btn-primary" onclick="resetQuiz()" id="btnResetResults">🔄 Take Quiz Again</button>
+                </div>
+
+                <!-- Share Section -->
+                <div class="share-section">
+                    <h3 id="shareTitle" style="margin-bottom: 1rem;">📢 Share this tool on LinkedIn!</h3>
+                    <p id="shareDesc" style="opacity: 0.8; margin-bottom: 1rem;">Help your network find the right AI model</p>
+                    <div class="share-buttons">
+                        <a href="https://www.linkedin.com/sharing/share-offsite/?url=YOUR_URL" target="_blank" class="share-btn linkedin" id="btnLinkedIn">
+                            Share on LinkedIn
+                        </a>
+                        <button class="share-btn copy" onclick="copyToClipboard()" id="btnCopy">
+                            Copy Link
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Prompt Generator Section -->
+        <div id="prompts" class="content-section">
+            <div class="results-container">
+                <h2 id="promptsMainTitle" style="font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 1.5rem; text-align: center;">✨ AI Prompt Generator</h2>
+                <p id="promptsMainDesc" style="text-align: center; opacity: 0.8; margin-bottom: 2rem;">
+                    Get optimized prompt templates for each AI model
+                </p>
+                
+                <div class="filters">
+                    <div class="filter-group">
+                        <label class="filter-label" id="promptFilterLabel">Select AI Model:</label>
+                        <div class="filter-options" id="promptModelSelect"></div>
+                    </div>
+                </div>
+
+                <div id="promptTemplates"></div>
+            </div>
+        </div>
+
+        <!-- Prompt Optimizer Section -->
+        <div id="optimizer" class="content-section">
+            <div class="optimizer-container">
+                <h2 id="optimizerTitle" style="font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 1rem; text-align: center;">🚀 AI Prompt Optimizer</h2>
+                <p id="optimizerSubtitle" style="text-align: center; opacity: 0.8; margin-bottom: 2rem;">
+                    Test your prompt and get personalized improvement suggestions
+                </p>
+                
+                <div style="margin-bottom: 1.5rem;">
+                    <textarea 
+                        id="promptInput" 
+                        class="optimizer-input" 
+                        placeholder="Paste your prompt here..."></textarea>
+                </div>
+                
+                <div style="text-align: center;">
+                    <button class="btn btn-primary" onclick="analyzePrompt()" id="analyzeBtn" style="min-width: 200px;">
+                        Analyze My Prompt
+                    </button>
+                </div>
+                
+                <div id="optimizerResult" class="optimizer-result"></div>
+            </div>
+        </div>
+
+        <!-- Comparison Section -->
+        <div id="comparison" class="content-section">
+            <div class="filters">
+                <div class="filter-group">
+                    <label class="filter-label" id="sortLabel">🎯 Sort by:</label>
+                    <div class="filter-options" id="sortOptions"></div>
+                </div>
+                <div class="filter-group">
+                    <label class="filter-label" id="budgetFilterLabel">💰 Budget:</label>
+                    <div class="filter-options" id="budgetFilterOptions"></div>
+                </div>
+            </div>
+
+            <div class="comparison-grid" id="comparisonGrid"></div>
+        </div>
+
+        <!-- Search Section -->
+        <div id="search" class="content-section">
+            <div class="filters">
+                <h2 id="searchTitle" style="margin-bottom: 1.5rem;">🔍 Advanced Search</h2>
+                
+                <div class="filter-group">
+                    <label class="filter-label" id="contextLabel">📊 Context Window:</label>
+                    <div class="filter-options" id="contextOptions"></div>
+                </div>
+
+                <div class="filter-group">
+                    <label class="filter-label" id="capabilitiesLabel">🎨 Capabilities:</label>
+                    <div class="filter-options" id="capabilityOptions"></div>
+                </div>
+            </div>
+
+            <div class="comparison-grid" id="searchGrid"></div>
+        </div>
+    </div>
+
+    <!-- Copyright Footer -->
+    <div class="copyright-footer">
+        <p id="copyrightText">
+            © 2026 Created by <a href="https://opex-performance.com" target="_blank" rel="noopener noreferrer">opex-performance.com</a>
+        </p>
+    </div>
+
+    <script>
+        // ===================================
+        // TRANSLATIONS SYSTEM
+        // ===================================
+        const translations = {
+            en: {
+                // Header
+                headerTitle: "🤖 AI Model Selector Pro 2026",
+                headerSubtitle: "Find the perfect AI model for your needs in 60 seconds",
+                
+                // Navigation
+                navQuiz: "🎯 Interactive Quiz",
+                navPrompts: "✨ Prompt Generator",
+                navComparison: "📊 Compare Models",
+                navSearch: "🔍 Advanced Search",
+                navOptimizer: "🚀 Prompt Optimizer",
+                
+                // Quiz Questions
+                q1Title: "🎯 What are your main objectives?",
+                q1Desc: "Select all that apply (multiple choices allowed)",
+                q2Title: "💰 What's your monthly budget?",
+                q3Title: "⭐ What are your priorities?",
+                q3Desc: "Select all that matter to you",
+                
+                // Use Cases
+                useCaseMarketing: "Marketing & Content",
+                useCaseCoding: "Development & Code",
+                useCaseResearch: "Research & Analysis",
+                useCaseSupport: "Customer Support",
+                useCaseCreative: "Creative Writing",
+                useCaseData: "Data Analysis",
+                useCaseDaily: "Daily Life",
+                
+                // Budget
+                budgetFree: "Free",
+                budgetLow: "Affordable",
+                budgetMedium: "Expensive",
+                budgetHigh: "Most expensive",
+                
+                // Priorities
+                prioritySpeed: "Speed",
+                priorityQuality: "Maximum Quality",
+                priorityCreativity: "Creativity",
+                priorityCost: "Optimized Cost",
+                priorityMultimodal: "Multimodal (images/videos)",
+                priorityPrivacy: "Privacy/GDPR",
+                
+                // Buttons
+                btnReset: "Restart",
+                btnNext: "Next →",
+                btnPrev: "← Back",
+                btnResults: "See Results 🎉",
+                btnResetResults: "🔄 Take Quiz Again",
+                
+                // Results
+                resultsTitle: "🎉 Your Recommended Models",
+                resultBest: "🥇 BEST CHOICE",
+                resultExcellent: "🥈 EXCELLENT TOO",
+                resultGood: "🥉 GOOD ALTERNATIVE",
+                resultPerfectFor: "✅ Perfect for:",
+                
+                // Features
+                featureContext: "Context",
+                featureSpeed: "Speed",
+                featureCreativity: "Creativity",
+                featurePrecision: "Precision",
+                featureCoding: "Coding",
+                
+                // Share
+                shareTitle: "📢 Share this tool on LinkedIn!",
+                shareDesc: "Help your network find the right AI model",
+                btnLinkedIn: "Share on LinkedIn",
+                btnCopy: "Copy Link",
+                
+                // Prompts
+                promptsMainTitle: "✨ AI Prompt Generator",
+                promptsMainDesc: "Get optimized prompt templates for each AI model",
+                promptFilterLabel: "Select AI Model:",
+                promptCopy: "Copy",
+                promptCopied: "✓ Copied!",
+                
+                // Filters
+                sortLabel: "🎯 Sort by:",
+                sortPopularity: "Popularity",
+                sortPriceLow: "Price (Low to High)",
+                sortPriceHigh: "Price (High to Low)",
+                sortPerformance: "Performance",
+                budgetFilterLabel: "💰 Budget:",
+                budgetFilterAll: "All",
+                budgetFilterFree: "Free",
+                budgetFilterLow: "Afforable",
+                budgetFilterMedium: "Expensive",
+                
+                // Search
+                searchTitle: "🔍 Advanced Search",
+                contextLabel: "📊 Context Window:",
+                contextAll: "All",
+                context128k: "≥ 128K tokens",
+                context200k: "≥ 200K tokens",
+                context1m: "≥ 1M tokens",
+                capabilitiesLabel: "🎨 Capabilities:",
+                capMultimodal: "Multimodal",
+                capCoding: "Excellent Coding",
+                capCreative: "Creativity",
+                capFast: "Ultra-fast",
+                capEU: "EU Compliance",
+                
+                // Toast
+                toastCopied: "✓ Link copied to clipboard!",
+                
+                // Prompt Optimizer
+                optimizerTitle: "🚀 AI Prompt Optimizer",
+                optimizerSubtitle: "Test your prompt and get personalized improvement suggestions",
+                optimizerPlaceholder: "Paste your prompt here...\n\nExample:\nWrite a blog post about AI.\n\nThen click 'Analyze' to receive detailed feedback and an optimized version!",
+                optimizerAnalyze: "Analyze My Prompt",
+                optimizerAnalyzing: "Analyzing...",
+                optimizerScore: "Prompt Quality Score",
+                optimizerStrengths: "✅ Strengths",
+                optimizerWeaknesses: "❌ Areas for Improvement",
+                optimizerSuggestions: "💡 Specific Suggestions",
+                optimizerImproved: "✨ Improved Version",
+                optimizerTryAgain: "Analyze Another Prompt",
+                websiteLink: "🌐 Official Website",
+                copyright: "© 2026 Created by"
+            },
+            fr: {
+                // Header
+                headerTitle: "🤖 Sélecteur de Modèles IA Pro 2026",
+                headerSubtitle: "Trouvez le modèle d'IA parfait pour vos besoins en 60 secondes",
+                
+                // Navigation
+                navQuiz: "🎯 Quiz Interactif",
+                navPrompts: "✨ Générateur de Prompts",
+                navComparison: "📊 Comparer les Modèles",
+                navSearch: "🔍 Recherche Avancée",
+                navOptimizer: "🚀 Optimiseur de Prompts",
+                
+                // Quiz Questions
+                q1Title: "🎯 Quels sont vos objectifs principaux ?",
+                q1Desc: "Sélectionnez tout ce qui s'applique (choix multiples autorisés)",
+                q2Title: "💰 Quel est votre budget mensuel ?",
+                q3Title: "⭐ Quelles sont vos priorités ?",
+                q3Desc: "Sélectionnez tout ce qui compte pour vous",
+                
+                // Use Cases
+                useCaseMarketing: "Marketing & Contenu",
+                useCaseCoding: "Développement & Code",
+                useCaseResearch: "Recherche & Analyse",
+                useCaseSupport: "Support Client",
+                useCaseCreative: "Écriture Créative",
+                useCaseData: "Analyse de Données",
+                useCaseDaily: "Vie Quotidienne",
+                
+                // Budget
+                budgetFree: "Gratuit",
+                budgetLow: "Aborable",
+                budgetMedium: "Cher",
+                budgetHigh: "Le plus cher",
+                
+                // Priorities
+                prioritySpeed: "Vitesse",
+                priorityQuality: "Qualité maximale",
+                priorityCreativity: "Créativité",
+                priorityCost: "Coût optimisé",
+                priorityMultimodal: "Multimodal (images/vidéos)",
+                priorityPrivacy: "Confidentialité/RGPD",
+                
+                // Buttons
+                btnReset: "Recommencer",
+                btnNext: "Suivant →",
+                btnPrev: "← Retour",
+                btnResults: "Voir les résultats 🎉",
+                btnResetResults: "🔄 Refaire le quiz",
+                
+                // Results
+                resultsTitle: "🎉 Vos Modèles Recommandés",
+                resultBest: "🥇 MEILLEUR CHOIX",
+                resultExcellent: "🥈 EXCELLENT AUSSI",
+                resultGood: "🥉 BONNE ALTERNATIVE",
+                resultPerfectFor: "✅ Parfait pour :",
+                
+                // Features
+                featureContext: "Contexte",
+                featureSpeed: "Vitesse",
+                featureCreativity: "Créativité",
+                featurePrecision: "Précision",
+                featureCoding: "Code",
+                
+                // Share
+                shareTitle: "📢 Partagez cet outil sur LinkedIn !",
+                shareDesc: "Aidez votre réseau à trouver le bon modèle d'IA",
+                btnLinkedIn: "Partager sur LinkedIn",
+                btnCopy: "Copier le lien",
+                
+                // Prompts
+                promptsMainTitle: "✨ Générateur de Prompts IA",
+                promptsMainDesc: "Obtenez des templates de prompts optimisés pour chaque modèle d'IA",
+                promptFilterLabel: "Sélectionner le modèle d'IA :",
+                promptCopy: "Copier",
+                promptCopied: "✓ Copié !",
+                
+                // Filters
+                sortLabel: "🎯 Trier par :",
+                sortPopularity: "Popularité",
+                sortPriceLow: "Prix croissant",
+                sortPriceHigh: "Prix décroissant",
+                sortPerformance: "Performance",
+                budgetFilterLabel: "💰 Budget :",
+                budgetFilterAll: "Tous",
+                budgetFilterFree: "Gratuit",
+                budgetFilterLow: "Abordable",
+                budgetFilterMedium: "Cher",
+                
+                // Search
+                searchTitle: "🔍 Recherche Avancée",
+                contextLabel: "📊 Fenêtre de contexte :",
+                contextAll: "Tous",
+                context128k: "≥ 128K tokens",
+                context200k: "≥ 200K tokens",
+                context1m: "≥ 1M tokens",
+                capabilitiesLabel: "🎨 Capacités :",
+                capMultimodal: "Multimodal",
+                capCoding: "Excellence Code",
+                capCreative: "Créativité",
+                capFast: "Ultra-rapide",
+                capEU: "Conformité EU",
+                
+                // Toast
+                toastCopied: "✓ Lien copié dans le presse-papier !",
+                
+                // Prompt Optimizer
+                optimizerTitle: "🚀 Optimiseur de Prompts IA",
+                optimizerSubtitle: "Testez votre prompt et obtenez des suggestions d'amélioration personnalisées",
+                optimizerPlaceholder: "Collez votre prompt ici...\n\nExemple :\nÉcris un article de blog sur l'IA.\n\nPuis cliquez sur 'Analyser' pour recevoir un retour détaillé et une version optimisée !",
+                optimizerAnalyze: "Analyser Mon Prompt",
+                optimizerAnalyzing: "Analyse en cours...",
+                optimizerScore: "Score de Qualité du Prompt",
+                optimizerStrengths: "✅ Points Forts",
+                optimizerWeaknesses: "❌ Points à Améliorer",
+                optimizerSuggestions: "💡 Suggestions Spécifiques",
+                optimizerImproved: "✨ Version Améliorée",
+                optimizerTryAgain: "Analyser un Autre Prompt",
+                websiteLink: "🌐 Site Officiel",
+                copyright: "© 2026 Créé par"
+            }
+        };
+
+        // Current language
+        let currentLang = 'en';
+
+        // ===================================
+        // AI MODELS DATABASE (Updated 2026)
+        // ===================================
+        const aiModels = {
+            'gpt52': {
+                name: 'GPT-5.2',
+                provider: 'OpenAI',
+                url: 'https://platform.openai.com/docs',
+                badge: 'premium',
+                price: { en: '$$$$', fr: '$$$$' },
+                priceNum: 90,
+                context: '256K',
+                contextNum: 256,
+                speed: '⭐⭐⭐⭐',
+                creativity: '⭐⭐⭐⭐⭐',
+                coding: '⭐⭐⭐⭐⭐',
+                precision: '⭐⭐⭐⭐⭐',
+                tags: { en: ['Premium', 'Agents', 'Critical'], fr: ['Premium', 'Agents', 'Critique'] },
+                bestFor: ['coding', 'research', 'data', 'creative'],
+                multimodal: true,
+                euCompliant: false,
+                description: {
+                    en: 'Latest flagship. Unmatched reasoning and agentic capabilities.',
+                    fr: 'Dernier modèle phare. Raisonnement et capacités agentic inégalées.'
+                },
+                useCases: {
+                    en: 'Complex architecture, autonomous agents, mission-critical tasks, advanced research',
+                    fr: 'Architecture complexe, agents autonomes, tâches critiques, recherche avancée'
+                }
+            },
+            'gpt4turbo': {
+                name: 'GPT-4.1 Turbo',
+                provider: 'OpenAI',
+                url: 'https://platform.openai.com/docs',
+                badge: 'balanced',
+                price: { en: '$$', fr: '$$' },
+                priceNum: 20,
+                context: '128K',
+                contextNum: 128,
+                speed: '⭐⭐⭐⭐',
+                creativity: '⭐⭐⭐',
+                coding: '⭐⭐⭐⭐',
+                precision: '⭐⭐⭐⭐',
+                tags: { en: ['Production', 'Versatile', 'Reliable'], fr: ['Production', 'Polyvalent', 'Fiable'] },
+                bestFor: ['marketing', 'coding', 'data', 'support', 'daily'],
+                multimodal: true,
+                euCompliant: false,
+                description: {
+                    en: 'Industry standard. Excellent quality/price/speed balance.',
+                    fr: 'Standard de l\'industrie. Excellent équilibre qualité/prix/vitesse.'
+                },
+                useCases: {
+                    en: 'B2B marketing, standard code, data generation, chatbots',
+                    fr: 'Marketing B2B, code standard, génération de données, chatbots'
+                }
+            },
+            'claude-opus': {
+                name: 'Claude Opus 4.5',
+                provider: 'Anthropic',
+                url: 'https://www.anthropic.com/claude',
+                badge: 'premium',
+                price: { en: '$$$$', fr: '$$$$' },
+                priceNum: 70,
+                context: '200K',
+                contextNum: 200,
+                speed: '⭐⭐⭐',
+                creativity: '⭐⭐⭐⭐⭐',
+                coding: '⭐⭐⭐⭐⭐',
+                precision: '⭐⭐⭐⭐⭐',
+                tags: { en: ['Creative', 'Deep', 'Nuanced'], fr: ['Créatif', 'Profond', 'Nuancé'] },
+                bestFor: ['creative', 'research', 'coding'],
+                multimodal: false,
+                euCompliant: true,
+                description: {
+                    en: 'Creativity and nuanced reasoning champion.',
+                    fr: 'Champion de la créativité et du raisonnement nuancé.'
+                },
+                useCases: {
+                    en: 'Creative writing, long document analysis, academic research',
+                    fr: 'Écriture créative, analyse documents longs, recherche académique'
+                }
+            },
+            'claude-sonnet': {
+                name: 'Claude Sonnet 4.5',
+                provider: 'Anthropic',
+                url: 'https://www.anthropic.com/claude',
+                badge: 'balanced',
+                price: { en: '$$$', fr: '$$$' },
+                priceNum: 30,
+                context: '200K',
+                contextNum: 200,
+                speed: '⭐⭐⭐⭐',
+                creativity: '⭐⭐⭐⭐⭐',
+                coding: '⭐⭐⭐⭐⭐',
+                precision: '⭐⭐⭐⭐⭐',
+                tags: { en: ['Balanced', 'Production', 'Excellence'], fr: ['Équilibré', 'Production', 'Excellence'] },
+                bestFor: ['marketing', 'coding', 'creative', 'research', 'daily'],
+                multimodal: false,
+                euCompliant: true,
+                description: {
+                    en: 'Best quality/price balance. Versatile and excellent.',
+                    fr: 'Meilleur équilibre qualité/prix. Polyvalent et excellent.'
+                },
+                useCases: {
+                    en: 'All professional uses, SEO, code review, synthesis',
+                    fr: 'Tout usage professionnel, SEO, code review, synthèses'
+                }
+            },
+            'claude-haiku': {
+                url: 'https://www.anthropic.com/claude',
+                name: 'Claude Haiku 4.5',
+                provider: 'Anthropic',
+                badge: 'free',
+                price: { en: '$', fr: '$' },
+                priceNum: 6,
+                context: '200K',
+                contextNum: 200,
+                speed: '⭐⭐⭐⭐⭐',
+                creativity: '⭐⭐⭐',
+                coding: '⭐⭐⭐⭐',
+                precision: '⭐⭐⭐⭐',
+                tags: { en: ['Fast', 'Economical', 'Chatbots'], fr: ['Rapide', 'Économique', 'Chatbots'] },
+                bestFor: ['support', 'data', 'daily'],
+                multimodal: false,
+                euCompliant: true,
+                description: {
+                    en: 'Ultra-fast and economical. Perfect for chatbots.',
+                    fr: 'Ultra-rapide et économique. Parfait pour les chatbots.'
+                },
+                useCases: {
+                    en: '24/7 customer support, quick responses, high volume',
+                    fr: 'Support client 24/7, réponses rapides, volume élevé'
+                }
+            },
+            'gemini3-pro': {
+                url: 'https://deepmind.google/technologies/gemini',
+                name: 'Gemini 3 Pro',
+                provider: 'Google',
+                badge: 'balanced',
+                price: { en: '$$$', fr: '$$$' },
+                priceNum: 28,
+                context: '2M',
+                contextNum: 2000,
+                speed: '⭐⭐⭐⭐⭐',
+                creativity: '⭐⭐⭐⭐',
+                coding: '⭐⭐⭐⭐',
+                precision: '⭐⭐⭐⭐',
+                tags: { en: ['Multimodal', 'Web', '2M context'], fr: ['Multimodal', 'Web', '2M contexte'] },
+                bestFor: ['research', 'data', 'marketing'],
+                multimodal: true,
+                euCompliant: false,
+                description: {
+                    en: 'Latest Gemini. Massive context and native multimodal.',
+                    fr: 'Dernier Gemini. Contexte massif et multimodal natif.'
+                },
+                useCases: {
+                    en: 'Visual analysis, OCR, videos, extremely long documents, real-time web',
+                    fr: 'Analyse visuelle, OCR, vidéos, documents très longs, web temps réel'
+                }
+            },
+            'gemini-flash': {
+                url: 'https://deepmind.google/technologies/gemini',
+                name: 'Gemini 2.0 Flash',
+                provider: 'Google',
+                badge: 'free',
+                price: { en: 'Free', fr: 'Gratuit' },
+                priceNum: 0,
+                context: '1M',
+                contextNum: 1000,
+                speed: '⭐⭐⭐⭐⭐',
+                creativity: '⭐⭐⭐',
+                coding: '⭐⭐⭐',
+                precision: '⭐⭐⭐',
+                tags: { en: ['Free', 'Fast', 'Prototype'], fr: ['Gratuit', 'Rapide', 'Prototype'] },
+                bestFor: ['marketing', 'support', 'daily'],
+                multimodal: true,
+                euCompliant: false,
+                description: {
+                    en: 'Free and fast. Ideal for prototyping.',
+                    fr: 'Gratuit et rapide. Idéal pour prototyper.'
+                },
+                useCases: {
+                    en: 'Prototyping, testing, personal projects',
+                    fr: 'Prototypage, tests, projets personnels'
+                }
+            },
+            'mistral3': {
+                url: 'https://mistral.ai',
+                name: 'Mistral 3 Large',
+                provider: 'Mistral AI',
+                badge: 'balanced',
+                price: { en: '$$$', fr: '$$$' },
+                priceNum: 38,
+                context: '256K',
+                contextNum: 256,
+                speed: '⭐⭐⭐⭐⭐',
+                creativity: '⭐⭐⭐⭐',
+                coding: '⭐⭐⭐⭐⭐',
+                precision: '⭐⭐⭐⭐⭐',
+                tags: { en: ['EU', 'GDPR', 'Multilingual'], fr: ['EU', 'RGPD', 'Multilingue'] },
+                bestFor: ['coding', 'research', 'data'],
+                multimodal: true,
+                euCompliant: true,
+                description: {
+                    en: 'European champion. Code excellence and GDPR compliance.',
+                    fr: 'Champion européen. Excellence code et conformité RGPD.'
+                },
+                useCases: {
+                    en: 'EU compliance, multilingual translation, critical code, image analysis',
+                    fr: 'Conformité EU, traduction multilingue, code critique, analyse d\'images'
+                }
+            },
+            'mistral-small': {
+                url: 'https://mistral.ai',
+                name: 'Mistral Small',
+                provider: 'Mistral AI',
+                badge: 'free',
+                price: { en: '$', fr: '$' },
+                priceNum: 4,
+                context: '32K',
+                contextNum: 32,
+                speed: '⭐⭐⭐⭐⭐',
+                creativity: '⭐⭐',
+                coding: '⭐⭐⭐',
+                precision: '⭐⭐⭐',
+                tags: { en: ['Economical', 'Fast', 'EU'], fr: ['Économique', 'Rapide', 'EU'] },
+                bestFor: ['support'],
+                multimodal: false,
+                euCompliant: true,
+                description: {
+                    en: 'Low price, high speed. Simple tasks.',
+                    fr: 'Petit prix, grande vitesse. Tâches simples.'
+                },
+                useCases: {
+                    en: 'Simple tasks, basic support, economical applications',
+                    fr: 'Tâches simples, support basique, applications économiques'
+                }
+            },
+            'grok41': {
+                url: 'https://x.ai',
+                name: 'Grok 4.1',
+                provider: 'xAI',
+                badge: 'balanced',
+                price: { en: '$$$', fr: '$$$' },
+                priceNum: 35,
+                context: '256K',
+                contextNum: 256,
+                speed: '⭐⭐⭐⭐⭐',
+                creativity: '⭐⭐⭐⭐',
+                coding: '⭐⭐⭐⭐',
+                precision: '⭐⭐⭐⭐',
+                tags: { en: ['Real-time', 'X/Twitter', 'News'], fr: ['Temps réel', 'X/Twitter', 'Actualité'] },
+                bestFor: ['marketing', 'research', 'data'],
+                multimodal: true,
+                euCompliant: false,
+                description: {
+                    en: 'Latest Grok. Real-time X access and enhanced reasoning.',
+                    fr: 'Dernier Grok. Accès X temps réel et raisonnement amélioré.'
+                },
+                useCases: {
+                    en: 'Social media monitoring, sentiment analysis, trends, real-time news',
+                    fr: 'Veille réseaux sociaux, analyse sentiment, tendances, actualité temps réel'
+                }
+            },
+            'llama': {
+                url: 'https://ai.meta.com/llama',
+                name: 'LLaMA 3.3 (405B)',
+                provider: 'Meta',
+                badge: 'free',
+                price: { en: 'Free*', fr: 'Gratuit*' },
+                priceNum: 0,
+                context: '128K',
+                contextNum: 128,
+                speed: '⭐⭐⭐⭐⭐',
+                creativity: '⭐⭐⭐',
+                coding: '⭐⭐⭐⭐',
+                precision: '⭐⭐⭐',
+                tags: { en: ['Open-source', 'Custom', 'Local'], fr: ['Open-source', 'Custom', 'Local'] },
+                bestFor: ['coding', 'support'],
+                multimodal: false,
+                euCompliant: true,
+                description: {
+                    en: 'Total open-source. Infinite customization and control.',
+                    fr: 'Open-source total. Customisation infinie et contrôle.'
+                },
+                useCases: {
+                    en: 'Fine-tuning, on-premise, massive volume, customization',
+                    fr: 'Fine-tuning, on-premise, volume massif, customisation'
+                }
+            }
+        };
+
+        // ===================================
+        // PROMPT TEMPLATES DATABASE
+        // ===================================
+        const promptTemplates = {
+            'gpt52': {
+                en: [
+                    {
+                        title: "Advanced Reasoning Task",
+                        template: `You are an expert AI assistant with advanced reasoning capabilities.
+
+Task: [Describe your complex task]
+Context: [Provide relevant background]
+Requirements:
+- Think through this step-by-step
+- Consider edge cases
+- Validate your reasoning
+
+Please analyze deeply and provide a comprehensive solution.`
+                    },
+                    {
+                        title: "Agentic Workflow",
+                        template: `Role: You are an autonomous AI agent capable of multi-step planning.
+
+Goal: [Define the end goal]
+Available Tools: [List any tools/APIs available]
+Constraints: [Budget, time, resources]
+
+Instructions:
+1. Break down the goal into sub-tasks
+2. Execute each step methodically
+3. Validate results before proceeding
+4. Adapt if obstacles arise
+
+Begin planning your approach.`
+                    }
+                ],
+                fr: [
+                    {
+                        title: "Tâche de Raisonnement Avancé",
+                        template: `Tu es un assistant IA expert avec des capacités de raisonnement avancées.
+
+Tâche : [Décris ta tâche complexe]
+Contexte : [Fournis le contexte pertinent]
+Exigences :
+- Réfléchis étape par étape
+- Considère les cas limites
+- Valide ton raisonnement
+
+Analyse en profondeur et fournis une solution complète.`
+                    },
+                    {
+                        title: "Workflow Agentic",
+                        template: `Rôle : Tu es un agent IA autonome capable de planification multi-étapes.
+
+Objectif : [Définis l'objectif final]
+Outils disponibles : [Liste les outils/APIs disponibles]
+Contraintes : [Budget, temps, ressources]
+
+Instructions :
+1. Décompose l'objectif en sous-tâches
+2. Exécute chaque étape méthodiquement
+3. Valide les résultats avant de continuer
+4. Adapte-toi si des obstacles surviennent
+
+Commence à planifier ton approche.`
+                    }
+                ]
+            },
+            'gpt4turbo': {
+                en: [
+                    {
+                        title: "Professional Content Creation",
+                        template: `Role: You are a professional [role: copywriter/analyst/developer]
+
+Task: [Specific task]
+Audience: [Target audience]
+Tone: [Professional/casual/technical]
+Format: [Blog post/report/code]
+Length: [Word/line count]
+
+Constraints:
+- [Specific requirement 1]
+- [Specific requirement 2]
+
+Please deliver a polished, production-ready output.`
+                    },
+                    {
+                        title: "Data Extraction & Analysis",
+                        template: `Input Data: [Paste your data or describe the source]
+
+Task: Extract and analyze the following:
+- [Metric 1]
+- [Metric 2]
+- [Metric 3]
+
+Output Format: JSON/Table/Summary
+Include: Trends, anomalies, insights
+
+Provide structured, actionable results.`
+                    }
+                ],
+                fr: [
+                    {
+                        title: "Création de Contenu Professionnel",
+                        template: `Rôle : Tu es un [rôle : copywriter/analyste/développeur] professionnel
+
+Tâche : [Tâche spécifique]
+Audience : [Public cible]
+Ton : [Professionnel/casual/technique]
+Format : [Article/rapport/code]
+Longueur : [Nombre de mots/lignes]
+
+Contraintes :
+- [Exigence spécifique 1]
+- [Exigence spécifique 2]
+
+Livre un contenu soigné et prêt pour la production.`
+                    },
+                    {
+                        title: "Extraction et Analyse de Données",
+                        template: `Données d'entrée : [Colle tes données ou décris la source]
+
+Tâche : Extrais et analyse les éléments suivants :
+- [Métrique 1]
+- [Métrique 2]
+- [Métrique 3]
+
+Format de sortie : JSON/Tableau/Résumé
+Inclure : Tendances, anomalies, insights
+
+Fournis des résultats structurés et actionnables.`
+                    }
+                ]
+            },
+            'claude-opus': {
+                en: [
+                    {
+                        title: "Creative Writing",
+                        template: `Context: [Provide rich background about your story/project]
+
+Creative Goal: [What you want to create]
+Style: [Literary style, tone, mood]
+Themes: [Key themes to explore]
+Constraints: [Length, format, audience]
+
+Please think deeply about character development, narrative arc, and emotional resonance. Take your time to craft something meaningful.`
+                    },
+                    {
+                        title: "Deep Analysis",
+                        template: `<document>
+[Paste your long document here - Claude Opus can handle up to 200K tokens]
+</document>
+
+Analysis Required:
+- [Aspect 1 to analyze]
+- [Aspect 2 to analyze]
+- [Aspect 3 to analyze]
+
+Please provide a nuanced, comprehensive analysis. Consider multiple perspectives and cite specific sections when relevant.
+
+Avoid: Superficial analysis
+Focus on: Deep insights and connections`
+                    }
+                ],
+                fr: [
+                    {
+                        title: "Écriture Créative",
+                        template: `Contexte : [Fournis un contexte riche sur ton histoire/projet]
+
+Objectif créatif : [Ce que tu veux créer]
+Style : [Style littéraire, ton, ambiance]
+Thèmes : [Thèmes clés à explorer]
+Contraintes : [Longueur, format, audience]
+
+Réfléchis en profondeur au développement des personnages, à l'arc narratif et à la résonance émotionnelle. Prends ton temps pour créer quelque chose de significatif.`
+                    },
+                    {
+                        title: "Analyse Approfondie",
+                        template: `<document>
+[Colle ton document long ici - Claude Opus peut gérer jusqu'à 200K tokens]
+</document>
+
+Analyse requise :
+- [Aspect 1 à analyser]
+- [Aspect 2 à analyser]
+- [Aspect 3 à analyser]
+
+Fournis une analyse nuancée et complète. Considère plusieurs perspectives et cite des sections spécifiques quand pertinent.
+
+Évite : Analyse superficielle
+Focus sur : Insights profonds et connexions`
+                    }
+                ]
+            },
+            'claude-sonnet': {
+                en: [
+                    {
+                        title: "Balanced Professional Task",
+                        template: `Here's what I need: [Clear explanation of your need]
+
+My goal is: [Desired outcome]
+Please [specific action] while [key constraint]
+
+Format: [Structure you want]
+Tone: [Professional/friendly/technical]
+Avoid: [What not to include]
+
+Deliver a high-quality, balanced result.`
+                    },
+                    {
+                        title: "Code Review & Optimization",
+                        template: `<code>
+[Paste your code here]
+</code>
+
+Review Focus:
+- Security vulnerabilities
+- Performance bottlenecks
+- Code quality and maintainability
+- Best practices
+
+Please provide:
+1. Identified issues with severity (critical/major/minor)
+2. Specific suggestions for improvement
+3. Refactored code examples where applicable
+
+Language: [Programming language]
+Framework: [If applicable]`
+                    }
+                ],
+                fr: [
+                    {
+                        title: "Tâche Professionnelle Équilibrée",
+                        template: `Voici ce dont j'ai besoin : [Explication claire de ton besoin]
+
+Mon objectif est : [Résultat souhaité]
+Effectue [action spécifique] tout en [contrainte clé]
+
+Format : [Structure souhaitée]
+Ton : [Professionnel/amical/technique]
+Évite : [Ce qu'il ne faut pas inclure]
+
+Livre un résultat équilibré de haute qualité.`
+                    },
+                    {
+                        title: "Revue et Optimisation de Code",
+                        template: `<code>
+[Colle ton code ici]
+</code>
+
+Focus de la revue :
+- Vulnérabilités de sécurité
+- Goulots d'étranglement performance
+- Qualité et maintenabilité du code
+- Bonnes pratiques
+
+Fournis :
+1. Problèmes identifiés avec sévérité (critique/majeur/mineur)
+2. Suggestions spécifiques d'amélioration
+3. Exemples de code refactorisé si applicable
+
+Langage : [Langage de programmation]
+Framework : [Si applicable]`
+                    }
+                ]
+            },
+            'gemini3-pro': {
+                url: 'https://deepmind.google/technologies/gemini',
+                en: [
+                    {
+                        title: "Multimodal Analysis",
+                        template: `[Upload your image/video]
+
+Analyze this visual content focusing on:
+- [Specific element 1]
+- [Specific element 2]
+- [Specific element 3]
+
+Context: [Why you need this analysis]
+Output Format: [Structured report/bullets/narrative]
+
+Please provide detailed observations and insights.`
+                    },
+                    {
+                        title: "Real-Time Web Research",
+                        template: `Search the web for: [Topic]
+
+Timeframe: [Last 24h/week/month]
+Sources to prioritize: [Academic/news/industry reports]
+Geographic focus: [If applicable]
+
+Synthesize findings into:
+- Key trends
+- Notable developments
+- Data points with sources
+- Implications
+
+Ensure all information is current and well-sourced.`
+                    }
+                ],
+                fr: [
+                    {
+                        title: "Analyse Multimodale",
+                        template: `[Upload ton image/vidéo]
+
+Analyse ce contenu visuel en te concentrant sur :
+- [Élément spécifique 1]
+- [Élément spécifique 2]
+- [Élément spécifique 3]
+
+Contexte : [Pourquoi tu as besoin de cette analyse]
+Format de sortie : [Rapport structuré/bullets/narratif]
+
+Fournis des observations et insights détaillés.`
+                    },
+                    {
+                        title: "Recherche Web Temps Réel",
+                        template: `Recherche sur le web : [Sujet]
+
+Période : [Dernières 24h/semaine/mois]
+Sources à prioriser : [Académique/actualités/rapports sectoriels]
+Focus géographique : [Si applicable]
+
+Synthétise les résultats en :
+- Tendances clés
+- Développements notables
+- Points de données avec sources
+- Implications
+
+Assure-toi que toutes les informations sont actuelles et bien sourcées.`
+                    }
+                ]
+            },
+            'mistral3': {
+                url: 'https://mistral.ai',
+                en: [
+                    {
+                        title: "Technical Code Generation",
+                        template: `Language: [Programming language]
+Task: [Specific coding task]
+
+Technical Requirements:
+- [Requirement 1]
+- [Requirement 2]
+- [Performance constraint]
+
+Please provide:
+1. Clean, well-documented code
+2. Explanation of approach
+3. Edge cases handled
+4. Unit tests
+
+Follow best practices for [language] development.`
+                    },
+                    {
+                        title: "Multilingual Translation",
+                        template: `Source Language: [Language]
+Target Languages: [List of languages]
+
+Content to translate:
+[Your content here]
+
+Requirements:
+- Maintain tone and nuance
+- Adapt culturally where needed
+- Preserve formatting
+- GDPR-compliant handling
+
+Provide native-quality translations for each target language.`
+                    }
+                ],
+                fr: [
+                    {
+                        title: "Génération de Code Technique",
+                        template: `Langage : [Langage de programmation]
+Tâche : [Tâche de codage spécifique]
+
+Exigences techniques :
+- [Exigence 1]
+- [Exigence 2]
+- [Contrainte de performance]
+
+Fournis :
+1. Code propre et bien documenté
+2. Explication de l'approche
+3. Cas limites gérés
+4. Tests unitaires
+
+Suis les bonnes pratiques de développement [langage].`
+                    },
+                    {
+                        title: "Traduction Multilingue",
+                        template: `Langue source : [Langue]
+Langues cibles : [Liste des langues]
+
+Contenu à traduire :
+[Ton contenu ici]
+
+Exigences :
+- Maintenir le ton et les nuances
+- Adapter culturellement si nécessaire
+- Préserver le formatage
+- Gestion conforme RGPD
+
+Fournis des traductions de qualité native pour chaque langue cible.`
+                    }
+                ]
+            },
+            'grok41': {
+                url: 'https://x.ai',
+                en: [
+                    {
+                        title: "Social Media Monitoring",
+                        template: `Brand/Topic: [What to monitor]
+Platform: X/Twitter
+Timeframe: [Last 24h/7 days/30 days]
+
+Analyze:
+- Sentiment (positive/negative/neutral)
+- Top themes and topics
+- Key influencers
+- Emerging trends
+- Crisis signals
+
+Provide:
+- Executive summary
+- Data visualization suggestions
+- Actionable insights`
+                    },
+                    {
+                        title: "Real-Time Trend Analysis",
+                        template: `Topic: [What's trending]
+Context: [Why this matters to you]
+
+Gather and analyze:
+- Current discussion volume
+- Sentiment breakdown
+- Key talking points
+- Notable accounts
+- Geographic distribution
+
+Deliver a comprehensive trend report with recommendations.`
+                    }
+                ],
+                fr: [
+                    {
+                        title: "Veille Réseaux Sociaux",
+                        template: `Marque/Sujet : [Quoi surveiller]
+Plateforme : X/Twitter
+Période : [Dernières 24h/7 jours/30 jours]
+
+Analyse :
+- Sentiment (positif/négatif/neutre)
+- Principaux thèmes et sujets
+- Influenceurs clés
+- Tendances émergentes
+- Signaux de crise
+
+Fournis :
+- Résumé exécutif
+- Suggestions de visualisation
+- Insights actionnables`
+                    },
+                    {
+                        title: "Analyse de Tendances Temps Réel",
+                        template: `Sujet : [Tendance actuelle]
+Contexte : [Pourquoi c'est important pour toi]
+
+Collecte et analyse :
+- Volume de discussion actuel
+- Répartition du sentiment
+- Points de discussion clés
+- Comptes notables
+- Distribution géographique
+
+Livre un rapport complet sur la tendance avec recommandations.`
+                    }
+                ]
+            }
+        };
+
+        // ===================================
+        // QUIZ STATE MANAGEMENT
+        // ===================================
+        let quizAnswers = {
+            useCases: [], // Changed to array for multiple selection
+            budget: null,
+            priorities: [] // Changed to array for multiple selection
+        };
+        let currentStep = 1;
+
+        // ===================================
+        // LANGUAGE SWITCHING
+        // ===================================
+        function switchLanguage(lang) {
+            currentLang = lang;
+            
+            // Update language buttons
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.querySelector(`.lang-btn-${lang}`).classList.add('active');
+            
+            // Update all translatable elements
+            updateTranslations();
+            
+            // Re-render dynamic content
+            renderQuizOptions();
+            renderPromptGenerator();
+            renderComparison();
+            renderFilters();
+        }
+
+        function updateTranslations() {
+            const t = translations[currentLang];
+            
+            // Update static text elements
+            Object.keys(t).forEach(key => {
+                const element = document.getElementById(key);
+                if (element) {
+                    element.textContent = t[key];
+                }
+            });
+            
+            // Update special elements
+            const promptInput = document.getElementById('promptInput');
+            if (promptInput) {
+                promptInput.placeholder = t.optimizerPlaceholder;
+            }
+            
+            // Update copyright with link
+            const copyrightText = document.getElementById('copyrightText');
+            if (copyrightText) {
+                copyrightText.innerHTML = `${t.copyright} <a href="https://opex-performance.com" target="_blank" rel="noopener noreferrer">opex-performance.com</a>`;
+            }
+        }
+
+        function t(key) {
+            return translations[currentLang][key] || key;
+        }
+
+        // ===================================
+        // QUIZ FUNCTIONALITY
+        // ===================================
+        function renderQuizOptions() {
+            const lang = currentLang;
+            
+            // Use Cases
+            const useCaseOptions = [
+                { value: 'marketing', icon: '📱', label: t('useCaseMarketing') },
+                { value: 'coding', icon: '💻', label: t('useCaseCoding') },
+                { value: 'research', icon: '🔬', label: t('useCaseResearch') },
+                { value: 'support', icon: '💬', label: t('useCaseSupport') },
+                { value: 'creative', icon: '🎨', label: t('useCaseCreative') },
+                { value: 'data', icon: '📊', label: t('useCaseData') },
+                { value: 'daily', icon: '🏠', label: t('useCaseDaily') }
+            ];
+            
+            let html = '';
+            useCaseOptions.forEach(opt => {
+                const selected = quizAnswers.useCases.includes(opt.value) ? 'selected' : '';
+                html += `
+                    <div class="quiz-option ${selected}" onclick="toggleMultipleOption('useCases', '${opt.value}')">
+                        <div class="quiz-option-icon">${opt.icon}</div>
+                        <div class="quiz-option-text">${opt.label}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('useCaseOptions').innerHTML = html;
+            
+            // Budget
+            const budgetOptions = [
+                { value: 'free', icon: '🆓', label: t('budgetFree') },
+                { value: 'low', icon: '💵', label: t('budgetLow') },
+                { value: 'medium', icon: '💰', label: t('budgetMedium') },
+                { value: 'high', icon: '💎', label: t('budgetHigh') }
+            ];
+            
+            html = '';
+            budgetOptions.forEach(opt => {
+                const selected = quizAnswers.budget === opt.value ? 'selected' : '';
+                html += `
+                    <div class="quiz-option ${selected}" onclick="selectSingleOption('budget', '${opt.value}')">
+                        <div class="quiz-option-icon">${opt.icon}</div>
+                        <div class="quiz-option-text">${opt.label}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('budgetOptions').innerHTML = html;
+            
+            // Priorities
+            const priorityOptions = [
+                { value: 'speed', icon: '⚡', label: t('prioritySpeed') },
+                { value: 'quality', icon: '🎯', label: t('priorityQuality') },
+                { value: 'creativity', icon: '🎨', label: t('priorityCreativity') },
+                { value: 'cost', icon: '💸', label: t('priorityCost') },
+                { value: 'multimodal', icon: '🖼️', label: t('priorityMultimodal') },
+                { value: 'privacy', icon: '🔒', label: t('priorityPrivacy') }
+            ];
+            
+            html = '';
+            priorityOptions.forEach(opt => {
+                const selected = quizAnswers.priorities.includes(opt.value) ? 'selected' : '';
+                html += `
+                    <div class="quiz-option ${selected}" onclick="toggleMultipleOption('priorities', '${opt.value}')">
+                        <div class="quiz-option-icon">${opt.icon}</div>
+                        <div class="quiz-option-text">${opt.label}</div>
+                    </div>
+                `;
+            });
+            document.getElementById('priorityOptions').innerHTML = html;
+        }
+
+        // Toggle multiple selection option
+        function toggleMultipleOption(type, value) {
+            const index = quizAnswers[type].indexOf(value);
+            
+            if (index > -1) {
+                // Remove if already selected
+                quizAnswers[type].splice(index, 1);
+            } else {
+                // Add if not selected
+                quizAnswers[type].push(value);
+            }
+            
+            // Re-render options to update visual state
+            renderQuizOptions();
+            
+            // Always enable next button if at least one option is selected
+            if (type === 'useCases') {
+                document.getElementById('nextBtn1').disabled = quizAnswers.useCases.length === 0;
+            } else if (type === 'priorities') {
+                document.getElementById('nextBtn3').disabled = quizAnswers.priorities.length === 0;
+            }
+        }
+
+        // Select single option (for budget)
+        function selectSingleOption(type, value) {
+            quizAnswers[type] = value;
+            
+            // Re-render to show selection
+            renderQuizOptions();
+            
+            // Enable next button
+            document.getElementById('nextBtn2').disabled = false;
+        }
+
+        function nextStep() {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep++;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            updateProgress();
+        }
+
+        function prevStep() {
+            document.getElementById(`step${currentStep}`).classList.remove('active');
+            currentStep--;
+            document.getElementById(`step${currentStep}`).classList.add('active');
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = ((currentStep - 1) / 2) * 100;
+            document.getElementById('quizProgress').style.width = progress + '%';
+        }
+
+        function calculateResults() {
+            const { useCases, budget, priorities } = quizAnswers;
+            
+            let recommendedModels = [];
+            
+            // Score each model
+            Object.entries(aiModels).forEach(([key, model]) => {
+                let score = 0;
+                
+                // Use case match (30 points per match)
+                const useCaseMatches = useCases.filter(uc => model.bestFor.includes(uc)).length;
+                score += useCaseMatches * 30;
+                
+                // Budget match (40 points)
+                if (budget === 'free' && model.priceNum === 0) {
+                    score += 40;
+                } else if (budget === 'low' && model.priceNum <= 30) {
+                    score += 40;
+                } else if (budget === 'medium' && model.priceNum <= 70) {
+                    score += 40;
+                } else if (budget === 'high') {
+                    score += 40;
+                }
+                
+                // Priority matches (20 points each)
+                priorities.forEach(priority => {
+                    if (priority === 'speed' && model.speed.includes('⭐⭐⭐⭐⭐')) score += 20;
+                    if (priority === 'quality' && model.precision.includes('⭐⭐⭐⭐⭐')) score += 20;
+                    if (priority === 'creativity' && model.creativity.includes('⭐⭐⭐⭐⭐')) score += 20;
+                    if (priority === 'cost' && model.priceNum < 10) score += 20;
+                    if (priority === 'multimodal' && model.multimodal) score += 20;
+                    if (priority === 'privacy' && model.euCompliant) score += 20;
+                });
+                
+                if (score > 0) {
+                    recommendedModels.push({ ...model, score, key });
+                }
+            });
+            
+            // Sort by score
+            recommendedModels.sort((a, b) => b.score - a.score);
+            
+            // Display results
+            displayResults(recommendedModels.slice(0, 3));
+        }
+
+        function displayResults(models) {
+            const lang = currentLang;
+            const rankings = [t('resultBest'), t('resultExcellent'), t('resultGood')];
+            
+            let html = `<h2 style="font-size: clamp(1.5rem, 4vw, 2rem); margin-bottom: 2rem; text-align: center;">${t('resultsTitle')}</h2>`;
+            
+            models.forEach((model, index) => {
+                html += `
+                    <div class="result-card" style="animation-delay: ${index * 0.1}s">
+                        <div style="display: flex; justify-content: space-between; align-items: start; margin-bottom: 1rem; flex-wrap: wrap; gap: 0.5rem;">
+                            <div>
+                                <div style="font-size: clamp(0.75rem, 2vw, 0.875rem); opacity: 0.8; margin-bottom: 0.5rem;">
+                                    ${rankings[index]}
+                                </div>
+                                <div class="result-title">${model.name}</div>
+                                <div class="result-subtitle">${model.provider}</div>
+                            </div>
+                            <div class="model-badge badge-${model.badge}" style="font-size: clamp(0.875rem, 2vw, 1rem); padding: 0.75rem 1.5rem;">
+                                ${model.price[lang]}
+                            </div>
+                        </div>
+                        
+                        <p style="font-size: clamp(1rem, 2.5vw, 1.125rem); margin-bottom: 1.5rem; opacity: 0.95;">
+                            ${model.description[lang]}
+                        </p>
+                        
+                        <div class="result-features">
+                            <div class="result-feature">
+                                <div class="result-feature-label">${t('featureContext')}</div>
+                                <div class="result-feature-value">${model.context} tokens</div>
+                            </div>
+                            <div class="result-feature">
+                                <div class="result-feature-label">${t('featureSpeed')}</div>
+                                <div class="result-feature-value">${model.speed}</div>
+                            </div>
+                            <div class="result-feature">
+                                <div class="result-feature-label">${t('featureCreativity')}</div>
+                                <div class="result-feature-value">${model.creativity}</div>
+                            </div>
+                            <div class="result-feature">
+                                <div class="result-feature-label">${t('featurePrecision')}</div>
+                                <div class="result-feature-value">${model.precision}</div>
+                            </div>
+                        </div>
+                        
+                        <div style="margin-top: 1.5rem; padding-top: 1.5rem; border-top: 1px solid rgba(255,255,255,0.1);">
+                            <div style="font-weight: 600; margin-bottom: 0.5rem;">${t('resultPerfectFor')}</div>
+                            <div style="opacity: 0.9;">${model.useCases[lang]}</div>
+                        </div>
+                        
+                        <div style="margin-top: 1rem;">
+                            <a href="${model.url}" target="_blank" rel="noopener noreferrer" class="website-btn">
+                                ${t('websiteLink')}
+                            </a>
+                        </div>
+                    </div>
+                `;
+            });
+            
+            document.getElementById('resultsContent').innerHTML = html;
+            
+            // Switch to results view
+            switchTab('results');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function resetQuiz() {
+            quizAnswers = { useCases: [], budget: null, priorities: [] };
+            currentStep = 1;
+            
+            // Reset UI
+            document.querySelectorAll('.quiz-step').forEach(s => s.classList.remove('active'));
+            document.getElementById('step1').classList.add('active');
+            
+            document.querySelectorAll('[id^="nextBtn"]').forEach(btn => btn.disabled = true);
+            document.getElementById('nextBtn1').disabled = true;
+            
+            updateProgress();
+            renderQuizOptions();
+            
+            // Switch to quiz view
+            switchTab('quiz');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ===================================
+        // PROMPT GENERATOR
+        // ===================================
+        function renderPromptGenerator() {
+            const lang = currentLang;
+            
+            // Render model selection
+            let html = '';
+            Object.entries(aiModels).forEach(([key, model]) => {
+                html += `
+                    <div class="filter-option" onclick="selectPromptModel('${key}')">
+                        ${model.name}
+                    </div>
+                `;
+            });
+            document.getElementById('promptModelSelect').innerHTML = html;
+            
+            // Auto-select first model
+            if (Object.keys(aiModels).length > 0) {
+                selectPromptModel(Object.keys(aiModels)[0]);
+            }
+        }
+
+        function selectPromptModel(modelKey) {
+            const lang = currentLang;
+            
+            // Update active filter
+            document.querySelectorAll('#promptModelSelect .filter-option').forEach(opt => {
+                opt.classList.remove('active');
+            });
+            event.target.classList.add('active');
+            
+            // Render templates for selected model
+            const templates = promptTemplates[modelKey] ? promptTemplates[modelKey][lang] : [];
+            
+            let html = '';
+            if (templates.length > 0) {
+                templates.forEach((template, index) => {
+                    html += `
+                        <div class="prompt-generator">
+                            <h3>${template.title}</h3>
+                            <div class="prompt-template">
+                                <div class="prompt-code" style="position: relative;">
+                                    <button class="copy-btn" onclick="copyPrompt(this, ${index})">
+                                        ${t('promptCopy')}
+                                    </button>
+                                    ${template.template}
+                                </div>
+                            </div>
+                        </div>
+                    `;
+                });
+            } else {
+                html = `<p style="text-align: center; opacity: 0.7; padding: 2rem;">${lang === 'en' ? 'Templates coming soon for this model.' : 'Templates bientôt disponibles pour ce modèle.'}</p>`;
+            }
+            
+            document.getElementById('promptTemplates').innerHTML = html;
+        }
+
+        function copyPrompt(button, index) {
+            const promptCode = button.parentElement;
+            const text = promptCode.textContent.replace(t('promptCopy'), '').replace(t('promptCopied'), '').trim();
+            
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = t('promptCopied');
+                showToast(t('toastCopied'));
+                setTimeout(() => {
+                    button.textContent = t('promptCopy');
+                }, 2000);
+            });
+        }
+
+        // ===================================
+        // COMPARISON & SEARCH
+        // ===================================
+        function renderComparison() {
+            const lang = currentLang;
+            let html = '';
+            
+            Object.entries(aiModels).forEach(([key, model]) => {
+                html += createModelCard(model, lang);
+            });
+            
+            document.getElementById('comparisonGrid').innerHTML = html;
+        }
+
+        function renderSearch() {
+            renderComparison();
+            document.getElementById('searchGrid').innerHTML = document.getElementById('comparisonGrid').innerHTML;
+        }
+
+        function createModelCard(model, lang) {
+            return `
+                <div class="model-card" data-price="${model.priceNum}" data-context="${model.contextNum}">
+                    <div class="model-header">
+                        <div class="model-name">${model.name}</div>
+                        <div class="model-badge badge-${model.badge}">${model.price[lang]}</div>
+                    </div>
+                    
+                    <div style="font-size: clamp(0.75rem, 2vw, 0.875rem); opacity: 0.7; margin-bottom: 1rem;">${model.provider}</div>
+                    
+                    <p style="margin-bottom: 1.5rem; opacity: 0.9; font-size: clamp(0.875rem, 2vw, 1rem);">${model.description[lang]}</p>
+                    
+                    <div class="model-stats">
+                        <div class="stat">
+                            <div class="stat-label">${t('featureContext')}</div>
+                            <div class="stat-value">${model.context}</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">${t('featureSpeed')}</div>
+                            <div class="stat-value">${model.speed}</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">${t('featureCoding')}</div>
+                            <div class="stat-value">${model.coding}</div>
+                        </div>
+                        <div class="stat">
+                            <div class="stat-label">${t('featureCreativity')}</div>
+                            <div class="stat-value">${model.creativity}</div>
+                        </div>
+                    </div>
+                    
+                    <div class="model-tags">
+                        ${model.tags[lang].map(tag => `<span class="tag">${tag}</span>`).join('')}
+                        ${model.multimodal ? '<span class="tag">📸 Multimodal</span>' : ''}
+                        ${model.euCompliant ? '<span class="tag">🇪🇺 EU</span>' : ''}
+                    </div>
+                    
+                    <div style="margin-top: 1rem; padding-top: 1rem; border-top: 1px solid var(--border); font-size: clamp(0.75rem, 1.5vw, 0.875rem); opacity: 0.8;">
+                        <strong>${lang === 'en' ? 'Use cases:' : 'Cas d\'usage :'}</strong> ${model.useCases[lang]}
+                    </div>
+                </div>
+            `;
+        }
+
+        function renderFilters() {
+            const lang = currentLang;
+            
+            // Sort options
+            const sortOptions = [
+                { value: 'popularity', label: t('sortPopularity') },
+                { value: 'price-low', label: t('sortPriceLow') },
+                { value: 'price-high', label: t('sortPriceHigh') },
+                { value: 'performance', label: t('sortPerformance') }
+            ];
+            
+            let html = '';
+            sortOptions.forEach((opt, i) => {
+                html += `<div class="filter-option ${i === 0 ? 'active' : ''}" onclick="sortModels('${opt.value}')">${opt.label}</div>`;
+            });
+            document.getElementById('sortOptions').innerHTML = html;
+            
+            // Budget filters
+            const budgetFilters = [
+                { value: 'all', label: t('budgetFilterAll') },
+                { value: 'free', label: t('budgetFilterFree') },
+                { value: 'low', label: t('budgetFilterLow') },
+                { value: 'medium', label: t('budgetFilterMedium') }
+            ];
+            
+            html = '';
+            budgetFilters.forEach((opt, i) => {
+                html += `<div class="filter-option ${i === 0 ? 'active' : ''}" onclick="filterByBudget('${opt.value}')">${opt.label}</div>`;
+            });
+            document.getElementById('budgetFilterOptions').innerHTML = html;
+            
+            // Context options
+            const contextOptions = [
+                { value: 'all', label: t('contextAll') },
+                { value: '128k', label: t('context128k') },
+                { value: '200k', label: t('context200k') },
+                { value: '1m', label: t('context1m') }
+            ];
+            
+            html = '';
+            contextOptions.forEach((opt, i) => {
+                html += `<div class="filter-option ${i === 0 ? 'active' : ''}" onclick="filterContext('${opt.value}')">${opt.label}</div>`;
+            });
+            document.getElementById('contextOptions').innerHTML = html;
+            
+            // Capability options
+            const capabilityOptions = [
+                { value: 'multimodal', label: t('capMultimodal') },
+                { value: 'coding', label: t('capCoding') },
+                { value: 'creative', label: t('capCreative') },
+                { value: 'fast', label: t('capFast') },
+                { value: 'eu', label: t('capEU') }
+            ];
+            
+            html = '';
+            capabilityOptions.forEach(opt => {
+                html += `<div class="filter-option" onclick="toggleCapability('${opt.value}')">${opt.label}</div>`;
+            });
+            document.getElementById('capabilityOptions').innerHTML = html;
+        }
+
+        function sortModels(type) {
+            const grid = document.getElementById('comparisonGrid');
+            const cards = Array.from(grid.querySelectorAll('.model-card'));
+            
+            cards.sort((a, b) => {
+                if (type === 'price-low') {
+                    return parseInt(a.dataset.price) - parseInt(b.dataset.price);
+                } else if (type === 'price-high') {
+                    return parseInt(b.dataset.price) - parseInt(a.dataset.price);
+                }
+                return 0;
+            });
+            
+            grid.innerHTML = '';
+            cards.forEach(card => grid.appendChild(card));
+            
+            // Update active filter
+            document.querySelectorAll('#sortOptions .filter-option').forEach(opt => opt.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function filterByBudget(budget) {
+            const grid = document.getElementById('comparisonGrid');
+            const cards = grid.querySelectorAll('.model-card');
+            
+            cards.forEach(card => {
+                const price = parseInt(card.dataset.price);
+                let show = true;
+                
+                if (budget === 'free' && price > 0) show = false;
+                else if (budget === 'low' && price > 30) show = false;
+                else if (budget === 'medium' && price > 70) show = false;
+                
+                card.style.display = show ? 'block' : 'none';
+            });
+            
+            // Update active filter
+            document.querySelectorAll('#budgetFilterOptions .filter-option').forEach(opt => opt.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        function filterContext(level) {
+            const grid = document.getElementById('searchGrid');
+            const cards = grid.querySelectorAll('.model-card');
+            
+            cards.forEach(card => {
+                const context = parseInt(card.dataset.context);
+                let show = true;
+                
+                if (level === '128k' && context < 128) show = false;
+                else if (level === '200k' && context < 200) show = false;
+                else if (level === '1m' && context < 1000) show = false;
+                
+                card.style.display = show ? 'block' : 'none';
+            });
+            
+            // Update active filter
+            document.querySelectorAll('#contextOptions .filter-option').forEach(opt => opt.classList.remove('active'));
+            event.target.classList.add('active');
+        }
+
+        let activeCapabilities = [];
+
+        function toggleCapability(capability) {
+            event.target.classList.toggle('active');
+            
+            if (activeCapabilities.includes(capability)) {
+                activeCapabilities = activeCapabilities.filter(c => c !== capability);
+            } else {
+                activeCapabilities.push(capability);
+            }
+            
+            filterByCapabilities();
+        }
+
+        function filterByCapabilities() {
+            const lang = currentLang;
+            
+            if (activeCapabilities.length === 0) {
+                renderSearch();
+                return;
+            }
+            
+            const grid = document.getElementById('searchGrid');
+            let filteredModels = {};
+            
+            Object.entries(aiModels).forEach(([key, model]) => {
+                let match = true;
+                
+                activeCapabilities.forEach(cap => {
+                    if (cap === 'multimodal' && !model.multimodal) match = false;
+                    if (cap === 'coding' && !model.coding.includes('⭐⭐⭐⭐⭐')) match = false;
+                    if (cap === 'creative' && !model.creativity.includes('⭐⭐⭐⭐⭐')) match = false;
+                    if (cap === 'fast' && !model.speed.includes('⭐⭐⭐⭐⭐')) match = false;
+                    if (cap === 'eu' && !model.euCompliant) match = false;
+                });
+                
+                if (match) {
+                    filteredModels[key] = model;
+                }
+            });
+            
+            let html = '';
+            Object.values(filteredModels).forEach(model => {
+                html += createModelCard(model, lang);
+            });
+            
+            const noResults = lang === 'en' ? 'No models match these criteria.' : 'Aucun modèle ne correspond à ces critères.';
+            grid.innerHTML = html || `<p style="text-align: center; padding: 3rem; opacity: 0.7;">${noResults}</p>`;
+        }
+
+        // ===================================
+        // TAB SWITCHING
+        // ===================================
+        function switchTab(tab) {
+            // Update tabs
+            document.querySelectorAll('.nav-tab').forEach(t => t.classList.remove('active'));
+            
+            // Find which tab was clicked
+            const tabMap = {
+                'quiz': 0,
+                'prompts': 1,
+                'optimizer': 2,
+                'comparison': 3,
+                'search': 4,
+                'results': 0 // Results switches to quiz tab visually
+            };
+            
+            if (tab !== 'results') {
+                document.querySelectorAll('.nav-tab')[tabMap[tab]].classList.add('active');
+            }
+            
+            // Update content
+            document.querySelectorAll('.content-section').forEach(s => s.classList.remove('active'));
+            document.getElementById(tab).classList.add('active');
+            
+            // Initialize sections if needed
+            if (tab === 'prompts') {
+                renderPromptGenerator();
+            } else if (tab === 'optimizer') {
+                // Reset optimizer when opening
+                document.getElementById('promptInput').placeholder = t('optimizerPlaceholder');
+                document.getElementById('analyzeBtn').textContent = t('optimizerAnalyze');
+                document.getElementById('analyzeBtn').disabled = false;
+                document.getElementById('optimizerResult').classList.remove('active');
+            } else if (tab === 'comparison') {
+                renderComparison();
+            } else if (tab === 'search') {
+                renderSearch();
+            }
+        }
+
+        // ===================================
+        // PROMPT OPTIMIZER
+        // ===================================
+        function analyzePrompt() {
+            const promptText = document.getElementById('promptInput').value.trim();
+            const lang = currentLang;
+            const analyzeBtn = document.getElementById('analyzeBtn');
+            
+            if (!promptText) {
+                showToast(lang === 'en' ? 'Please enter a prompt first!' : 'Veuillez d\'abord entrer un prompt !');
+                return;
+            }
+            
+            // Show analyzing state
+            analyzeBtn.disabled = true;
+            analyzeBtn.innerHTML = `<span class="loading"></span> ${t('optimizerAnalyzing')}`;
+            
+            // Simulate analysis (in real app, this would call an AI API)
+            setTimeout(() => {
+                const analysis = performPromptAnalysis(promptText, lang);
+                displayPromptAnalysis(analysis, promptText, lang);
+                
+                // Reset button
+                analyzeBtn.disabled = false;
+                analyzeBtn.textContent = t('optimizerTryAgain');
+                
+                // Scroll to results
+                document.getElementById('optimizerResult').scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+            }, 1500);
+        }
+
+        function performPromptAnalysis(prompt, lang) {
+            const analysis = {
+                score: 0,
+                strengths: [],
+                weaknesses: [],
+                suggestions: [],
+                improved: ''
+            };
+            
+            // Check for various prompt quality indicators
+            const hasRole = /you are|tu es|act as|agis comme/i.test(prompt);
+            const hasContext = prompt.split(/[.!?]/).length > 2;
+            const hasSpecificity = /specific|précis|detail|détail/i.test(prompt) || prompt.length > 100;
+            const hasFormat = /format|structure|output/i.test(prompt);
+            const hasConstraints = /avoid|évite|don't|ne pas|must|doit/i.test(prompt);
+            const hasExamples = /example|exemple|like|comme/i.test(prompt);
+            const wordCount = prompt.split(/\s+/).length;
+            
+            // Calculate score
+            let score = 30; // Base score
+            if (hasRole) score += 15;
+            if (hasContext) score += 10;
+            if (hasSpecificity) score += 15;
+            if (hasFormat) score += 10;
+            if (hasConstraints) score += 10;
+            if (hasExamples) score += 10;
+            
+            analysis.score = Math.min(score, 100);
+            
+            // Determine strengths and weaknesses
+            if (lang === 'en') {
+                if (hasRole) {
+                    analysis.strengths.push("Clear role definition helps the AI understand its perspective");
+                } else {
+                    analysis.weaknesses.push("Missing role definition - specify who the AI should act as");
+                    analysis.suggestions.push("Add a role: 'You are an expert [role]...'");
+                }
+                
+                if (hasContext) {
+                    analysis.strengths.push("Good contextual information provided");
+                } else {
+                    analysis.weaknesses.push("Lacks sufficient context");
+                    analysis.suggestions.push("Add background information or context about the task");
+                }
+                
+                if (hasSpecificity) {
+                    analysis.strengths.push("Specific and detailed requirements");
+                } else {
+                    analysis.weaknesses.push("Too vague - needs more specific details");
+                    analysis.suggestions.push("Be more specific about what you want");
+                }
+                
+                if (hasFormat) {
+                    analysis.strengths.push("Output format is specified");
+                } else {
+                    analysis.weaknesses.push("No output format specified");
+                    analysis.suggestions.push("Specify desired format: JSON, bullets, paragraphs, etc.");
+                }
+                
+                if (hasConstraints) {
+                    analysis.strengths.push("Clear constraints or boundaries set");
+                } else {
+                    analysis.weaknesses.push("Missing constraints or boundaries");
+                    analysis.suggestions.push("Add constraints: 'Avoid...', 'Must include...', 'Don't...'");
+                }
+                
+                if (hasExamples) {
+                    analysis.strengths.push("Examples provided for clarity");
+                } else if (wordCount > 20) {
+                    analysis.suggestions.push("Consider adding 1-2 examples of desired output");
+                }
+                
+                if (wordCount < 10) {
+                    analysis.weaknesses.push("Prompt is too short for complex tasks");
+                    analysis.suggestions.push("Expand with more details and requirements");
+                }
+                
+                // Generate improved version
+                analysis.improved = generateImprovedPrompt(prompt, hasRole, hasContext, hasFormat, hasConstraints, 'en');
+                
+            } else { // French
+                if (hasRole) {
+                    analysis.strengths.push("Définition claire du rôle aide l'IA à comprendre sa perspective");
+                } else {
+                    analysis.weaknesses.push("Définition du rôle manquante - spécifiez qui l'IA doit incarner");
+                    analysis.suggestions.push("Ajoutez un rôle : 'Tu es un expert en [domaine]...'");
+                }
+                
+                if (hasContext) {
+                    analysis.strengths.push("Bonnes informations contextuelles fournies");
+                } else {
+                    analysis.weaknesses.push("Manque de contexte suffisant");
+                    analysis.suggestions.push("Ajoutez des informations de contexte sur la tâche");
+                }
+                
+                if (hasSpecificity) {
+                    analysis.strengths.push("Exigences spécifiques et détaillées");
+                } else {
+                    analysis.weaknesses.push("Trop vague - nécessite plus de détails spécifiques");
+                    analysis.suggestions.push("Soyez plus précis sur ce que vous voulez");
+                }
+                
+                if (hasFormat) {
+                    analysis.strengths.push("Format de sortie spécifié");
+                } else {
+                    analysis.weaknesses.push("Format de sortie non spécifié");
+                    analysis.suggestions.push("Spécifiez le format souhaité : JSON, bullets, paragraphes, etc.");
+                }
+                
+                if (hasConstraints) {
+                    analysis.strengths.push("Contraintes ou limites claires définies");
+                } else {
+                    analysis.weaknesses.push("Contraintes ou limites manquantes");
+                    analysis.suggestions.push("Ajoutez des contraintes : 'Évite...', 'Doit inclure...', 'Ne pas...'");
+                }
+                
+                if (hasExamples) {
+                    analysis.strengths.push("Exemples fournis pour plus de clarté");
+                } else if (wordCount > 20) {
+                    analysis.suggestions.push("Envisagez d'ajouter 1-2 exemples de sortie souhaitée");
+                }
+                
+                if (wordCount < 10) {
+                    analysis.weaknesses.push("Le prompt est trop court pour des tâches complexes");
+                    analysis.suggestions.push("Développez avec plus de détails et d'exigences");
+                }
+                
+                // Generate improved version
+                analysis.improved = generateImprovedPrompt(prompt, hasRole, hasContext, hasFormat, hasConstraints, 'fr');
+            }
+            
+            return analysis;
+        }
+
+        function generateImprovedPrompt(original, hasRole, hasContext, hasFormat, hasConstraints, lang) {
+            let improved = '';
+            
+            if (lang === 'en') {
+                if (!hasRole) {
+                    improved += "You are an expert assistant specialized in [your domain].\n\n";
+                }
+                
+                improved += "Task: " + original + "\n\n";
+                
+                if (!hasContext) {
+                    improved += "Context: [Add relevant background information]\n\n";
+                }
+                
+                improved += "Requirements:\n";
+                improved += "- Be specific and detailed\n";
+                improved += "- Focus on [key aspect]\n";
+                
+                if (!hasFormat) {
+                    improved += "\nOutput Format: [Specify desired format]\n";
+                }
+                
+                if (!hasConstraints) {
+                    improved += "\nConstraints:\n";
+                    improved += "- Avoid: [What to avoid]\n";
+                    improved += "- Must include: [Required elements]\n";
+                }
+                
+                improved += "\nPlease provide a comprehensive and well-structured response.";
+                
+            } else { // French
+                if (!hasRole) {
+                    improved += "Tu es un assistant expert spécialisé en [votre domaine].\n\n";
+                }
+                
+                improved += "Tâche : " + original + "\n\n";
+                
+                if (!hasContext) {
+                    improved += "Contexte : [Ajoutez les informations de contexte pertinentes]\n\n";
+                }
+                
+                improved += "Exigences :\n";
+                improved += "- Sois spécifique et détaillé\n";
+                improved += "- Concentre-toi sur [aspect clé]\n";
+                
+                if (!hasFormat) {
+                    improved += "\nFormat de sortie : [Spécifiez le format souhaité]\n";
+                }
+                
+                if (!hasConstraints) {
+                    improved += "\nContraintes :\n";
+                    improved += "- Évite : [Ce qu'il faut éviter]\n";
+                    improved += "- Doit inclure : [Éléments requis]\n";
+                }
+                
+                improved += "\nMerci de fournir une réponse complète et bien structurée.";
+            }
+            
+            return improved;
+        }
+
+        function displayPromptAnalysis(analysis, originalPrompt, lang) {
+            const resultDiv = document.getElementById('optimizerResult');
+            
+            // Determine score level and color
+            let scoreClass = '';
+            let scoreLabel = '';
+            if (analysis.score >= 80) {
+                scoreClass = 'score-excellent';
+                scoreLabel = lang === 'en' ? 'Excellent' : 'Excellent';
+            } else if (analysis.score >= 60) {
+                scoreClass = 'score-good';
+                scoreLabel = lang === 'en' ? 'Good' : 'Bon';
+            } else if (analysis.score >= 40) {
+                scoreClass = 'score-fair';
+                scoreLabel = lang === 'en' ? 'Fair' : 'Moyen';
+            } else {
+                scoreClass = 'score-poor';
+                scoreLabel = lang === 'en' ? 'Needs Improvement' : 'À améliorer';
+            }
+            
+            let html = `
+                <h3 style="font-size: clamp(1.25rem, 3vw, 1.5rem); margin-bottom: 1rem;">
+                    ${t('optimizerScore')}
+                </h3>
+                <div class="score-badge ${scoreClass}">
+                    ${analysis.score}/100 - ${scoreLabel}
+                </div>
+            `;
+            
+            // Strengths
+            if (analysis.strengths.length > 0) {
+                html += `
+                    <div class="optimizer-section">
+                        <h4>${t('optimizerStrengths')}</h4>
+                        <ul>
+                            ${analysis.strengths.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            // Weaknesses
+            if (analysis.weaknesses.length > 0) {
+                html += `
+                    <div class="optimizer-section">
+                        <h4>${t('optimizerWeaknesses')}</h4>
+                        <ul>
+                            ${analysis.weaknesses.map(w => `<li>${w}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            // Suggestions
+            if (analysis.suggestions.length > 0) {
+                html += `
+                    <div class="optimizer-section">
+                        <h4>${t('optimizerSuggestions')}</h4>
+                        <ul>
+                            ${analysis.suggestions.map(s => `<li>${s}</li>`).join('')}
+                        </ul>
+                    </div>
+                `;
+            }
+            
+            // Improved version
+            html += `
+                <div class="optimizer-section">
+                    <h4>${t('optimizerImproved')}</h4>
+                    <div class="improved-prompt" style="position: relative;">
+                        <button class="copy-btn" onclick="copyImprovedPrompt()" style="position: absolute;">
+                            ${t('promptCopy')}
+                        </button>
+                        ${analysis.improved}
+                    </div>
+                </div>
+            `;
+            
+            resultDiv.innerHTML = html;
+            resultDiv.classList.add('active');
+        }
+
+        function copyImprovedPrompt() {
+            const improvedText = document.querySelector('.improved-prompt').textContent
+                .replace(t('promptCopy'), '')
+                .replace(t('promptCopied'), '')
+                .trim();
+            
+            navigator.clipboard.writeText(improvedText).then(() => {
+                const btn = document.querySelector('.improved-prompt .copy-btn');
+                btn.textContent = t('promptCopied');
+                showToast(t('toastCopied'));
+                setTimeout(() => {
+                    btn.textContent = t('promptCopy');
+                }, 2000);
+            });
+        }
+
+        // ===================================
+        // UTILITIES
+        // ===================================
+        function copyToClipboard() {
+            const url = window.location.href;
+            navigator.clipboard.writeText(url).then(() => {
+                showToast(t('toastCopied'));
+            });
+        }
+
+        function showToast(message) {
+            const toast = document.createElement('div');
+            toast.className = 'toast';
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            
+            setTimeout(() => {
+                toast.remove();
+            }, 3000);
+        }
+
+        // ===================================
+        // INITIALIZATION
+        // ===================================
+        window.addEventListener('DOMContentLoaded', () => {
+            updateTranslations();
+            renderQuizOptions();
+            renderComparison();
+            renderFilters();
+        });
+    </script>
+</body>
+</html>
